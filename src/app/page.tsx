@@ -1,13 +1,13 @@
-import { SiteHeader } from "@/components/sites/sv-svai-ru-5bde0d5b/shared/SiteHeader";
-import { SiteFooter } from "@/components/sites/sv-svai-ru-5bde0d5b/shared/SiteFooter";
-import { HeroSection } from "@/components/sites/sv-svai-ru-5bde0d5b/mir-61746d61/HeroSection";
-import { ProcessSection } from "@/components/sites/sv-svai-ru-5bde0d5b/mir-61746d61/ProcessSection";
-import { CaseShowcaseSection } from "@/components/sites/sv-svai-ru-5bde0d5b/mir-61746d61/CaseShowcaseSection";
-import { GuaranteeSection } from "@/components/sites/sv-svai-ru-5bde0d5b/mir-61746d61/GuaranteeSection";
-import { TestimonialsSection } from "@/components/sites/sv-svai-ru-5bde0d5b/mir-61746d61/TestimonialsSection";
-import { ChatRequestSection } from "@/components/sites/sv-svai-ru-5bde0d5b/mir-61746d61/ChatRequestSection";
-import { FAQSection } from "@/components/sites/sv-svai-ru-5bde0d5b/mir-61746d61/FAQSection";
-import { TaskNavigatorSection } from "@/components/sites/sv-svai-ru-5bde0d5b/mir-61746d61/TaskNavigatorSection";
+import { SiteHeader } from "@/components/shared/SiteHeader";
+import { SiteFooter } from "@/components/shared/SiteFooter";
+import { HeroSection } from "@/components/sections/HeroSection";
+import { ProcessSection } from "@/components/sections/ProcessSection";
+import { CaseShowcaseSection } from "@/components/sections/CaseShowcaseSection";
+import { GuaranteeSection } from "@/components/sections/GuaranteeSection";
+import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
+import { ChatRequestSection } from "@/components/sections/ChatRequestSection";
+import { FAQSection } from "@/components/sections/FAQSection";
+import { TaskNavigatorSection } from "@/components/sections/TaskNavigatorSection";
 
 export default function Home() {
   return (
