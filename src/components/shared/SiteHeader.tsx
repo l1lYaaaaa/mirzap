@@ -4,12 +4,14 @@ import { useEffect, useState } from "react"
 import { Phone } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { smoothScrollToId } from "@/lib/smooth-scroll"
 
 const NAV_LINKS = [
-  { label: "Двигатели и КПП", href: "#engines" },
-  { label: "Сервис", href: "#service" },
-  { label: "Кейсы", href: "#cases" },
-  { label: "Оставить заявку", href: "#request" },
+  { label: "Подбор", id: "pick" },
+  { label: "Кейсы", id: "cases" },
+  { label: "Оплата и доставка", id: "delivery" },
+  { label: "Отзывы", id: "reviews" },
+  { label: "Оставить заявку", id: "request" },
 ]
 
 export function SiteHeader({ className }: { className?: string }) {
@@ -57,8 +59,12 @@ export function SiteHeader({ className }: { className?: string }) {
         <nav className="hidden items-center gap-8 lg:flex">
           {NAV_LINKS.map((link) => (
             <a
-              key={link.href}
-              href={link.href}
+              key={link.id}
+              href={`#${link.id}`}
+              onClick={(e) => {
+                e.preventDefault()
+                smoothScrollToId(link.id)
+              }}
               className="relative text-[14px] text-[var(--color-mir-ink-muted)] transition-colors after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-[var(--color-mir-accent)] after:transition-all after:duration-300 hover:text-[var(--color-mir-ink)] hover:after:w-full"
             >
               {link.label}

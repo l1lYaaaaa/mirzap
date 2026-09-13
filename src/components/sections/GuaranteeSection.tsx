@@ -40,7 +40,7 @@ const BULLETS = [
 
 export function GuaranteeSection() {
   return (
-    <section className="border-t border-[var(--color-mir-paper-muted)] bg-[var(--color-mir-paper)] px-6 py-16 lg:px-12 lg:py-24">
+    <section id="delivery" className="border-t border-[var(--color-mir-paper-muted)] bg-[var(--color-mir-paper)] px-6 py-16 lg:px-12 lg:py-24">
       <div className="mx-auto max-w-[1320px]">
         <Reveal className="max-w-[52ch]">
           <h2
@@ -130,7 +130,8 @@ export function GuaranteeSection() {
               <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <Magnetic strength={0.2}>
                   <Button
-                    type="button"
+                    render={<a href="https://t.me/WorldZap" target="_blank" rel="noopener noreferrer" />}
+                    nativeButton={false}
                     className="h-auto w-fit rounded-full bg-[var(--color-mir-accent)] px-6 py-3 text-[14px] font-medium text-white shadow-[0_10px_28px_-8px_rgba(255,87,34,0.65)] transition-all duration-300 hover:bg-[var(--color-mir-accent)] hover:shadow-[0_14px_36px_-6px_rgba(255,87,34,0.8)]"
                     style={{ fontFamily: "var(--font-mir-body)" }}
                   >

@@ -36,7 +36,7 @@ export function TestimonialsSection() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="border-t border-[var(--color-mir-paper-muted)] bg-[var(--color-mir-paper)] px-6 py-16 lg:px-12 lg:py-24">
+    <section id="reviews" className="border-t border-[var(--color-mir-paper-muted)] bg-[var(--color-mir-paper)] px-6 py-16 lg:px-12 lg:py-24">
       <div className="mx-auto max-w-[1320px]">
         <Reveal className="max-w-[56ch]">
           <h2

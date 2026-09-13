@@ -7,7 +7,6 @@ import { GuaranteeSection } from "@/components/sections/GuaranteeSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { ChatRequestSection } from "@/components/sections/ChatRequestSection";
 import { FAQSection } from "@/components/sections/FAQSection";
-import { TaskNavigatorSection } from "@/components/sections/TaskNavigatorSection";
 
 export default function Home() {
   return (
@@ -21,7 +20,6 @@ export default function Home() {
         <TestimonialsSection />
         <ChatRequestSection />
         <FAQSection />
-        <TaskNavigatorSection />
       </main>
       <SiteFooter />
     </>
