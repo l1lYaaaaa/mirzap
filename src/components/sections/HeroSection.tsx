@@ -1,13 +1,13 @@
 "use client"
 
-import { useRef } from "react"
-import Image from "next/image"
 import { Check } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Reveal } from "@/components/shared/Reveal"
 import { Magnetic } from "@/components/shared/Magnetic"
+import { PhotoCarousel } from "@/components/shared/PhotoCarousel"
 import { basePath } from "@/lib/base-path"
+import { smoothScrollToId } from "@/lib/smooth-scroll"
 
 const FEATURES = [
   {
@@ -24,22 +24,11 @@ const FEATURES = [
   },
 ]
 
-// Callout points over the hero photo — a real brake kit, so the two calls
-// out point at things actually visible in the frame rather than decorating
-// an arbitrary spot.
-const CALLOUTS = [
-  {
-    x: 26,
-    y: 32,
-    align: "left" as const,
-    text: "Суппорты — без следов перегрева",
-  },
-  {
-    x: 74,
-    y: 66,
-    align: "right" as const,
-    text: "Диски проверены на выработку",
-  },
+const HERO_PHOTOS = [
+  { src: `${basePath}/images/carousel-transmission.jpg`, alt: "Контрактная АКПП на складе" },
+  { src: `${basePath}/images/carousel-engine.png`, alt: "Контрактный двигатель" },
+  { src: `${basePath}/images/carousel-door.png`, alt: "Кузовная деталь — дверь" },
+  { src: `${basePath}/images/carousel-badge.png`, alt: "Деталь с камерой заднего вида" },
 ]
 
 const TICKER_ITEMS = [
@@ -52,28 +41,11 @@ const TICKER_ITEMS = [
 ]
 
 export function HeroSection({ className }: { className?: string }) {
-  const photoRef = useRef<HTMLDivElement>(null)
-
-  function handlePhotoMove(e: React.MouseEvent<HTMLDivElement>) {
-    const el = photoRef.current
-    if (!el) return
-    const rect = el.getBoundingClientRect()
-    const px = (e.clientX - rect.left) / rect.width - 0.5
-    const py = (e.clientY - rect.top) / rect.height - 0.5
-    el.style.transform = `perspective(1000px) rotateY(${px * 6}deg) rotateX(${-py * 6}deg) scale3d(1.02, 1.02, 1.02)`
-  }
-
-  function handlePhotoLeave() {
-    const el = photoRef.current
-    if (!el) return
-    el.style.transform = "perspective(1000px) rotateY(0deg) rotateX(0deg) scale3d(1, 1, 1)"
-  }
-
   return (
     <section
       id="top"
       className={cn(
-        "relative isolate overflow-hidden bg-[var(--color-mir-bg)] pt-28 pb-14 lg:pt-36 lg:pb-20",
+        "relative isolate overflow-hidden bg-[var(--color-mir-bg)] pt-28 pb-0 lg:pt-36 lg:pb-0",
         className
       )}
     >
@@ -84,7 +56,7 @@ export function HeroSection({ className }: { className?: string }) {
         style={{ background: "radial-gradient(circle, var(--color-mir-accent), transparent 70%)" }}
       />
 
-      <div className="relative mx-auto grid w-full max-w-[1320px] grid-cols-1 gap-14 px-6 lg:grid-cols-[1.05fr_1fr] lg:gap-10 lg:px-12">
+      <div className="relative mx-auto grid w-full max-w-[1400px] grid-cols-1 gap-14 px-6 lg:grid-cols-[1fr_1.15fr] lg:gap-10 lg:px-12">
         <Reveal className="flex flex-col justify-center">
           <h1 className="font-[var(--font-mir-display)] text-[40px] leading-[1.08] font-bold text-[var(--color-mir-ink)] sm:text-[52px] lg:text-[64px]">
             Контрактный двигатель или КПП —{" "}
@@ -104,6 +76,10 @@ export function HeroSection({ className }: { className?: string }) {
               <Button
                 render={<a href="#request" />}
                 nativeButton={false}
+                onClick={(e) => {
+                  e.preventDefault()
+                  smoothScrollToId("request")
+                }}
                 className="h-auto rounded-full bg-[var(--color-mir-accent)] px-7 py-4 font-[var(--font-mir-body)] text-[14px] font-semibold text-white shadow-[0_10px_30px_-8px_rgba(255,87,34,0.6)] transition-all duration-300 hover:bg-[var(--color-mir-accent)] hover:shadow-[0_14px_40px_-6px_rgba(255,87,34,0.75)]"
               >
                 Оставить заявку
@@ -112,7 +88,7 @@ export function HeroSection({ className }: { className?: string }) {
             <Magnetic strength={0.25}>
               <Button
                 variant="outline"
-                render={<a href="https://t.me" />}
+                render={<a href="https://t.me/WorldZap" target="_blank" rel="noopener noreferrer" />}
                 nativeButton={false}
                 className="h-auto rounded-full border-white/15 bg-white/[0.03] px-7 py-4 font-[var(--font-mir-body)] text-[14px] font-medium text-[var(--color-mir-ink)] backdrop-blur-sm transition-all duration-300 hover:border-white/30 hover:bg-white/[0.08]"
               >
@@ -144,88 +120,25 @@ export function HeroSection({ className }: { className?: string }) {
           </ul>
         </Reveal>
 
-        <Reveal delay={100} className="relative flex items-center [perspective:1000px]">
-          <div
-            ref={photoRef}
-            onMouseMove={handlePhotoMove}
-            onMouseLeave={handlePhotoLeave}
-            className="relative aspect-[4/5] w-full overflow-hidden rounded-[28px] bg-[var(--color-mir-paper-muted)] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)] transition-transform duration-300 ease-out will-change-transform"
-          >
-            <Image
-              src={`${basePath}/images/brake-kit-hero.webp`}
-              alt="Комплект тормозов, подготовленный к отправке"
-              fill
-              sizes="(min-width: 1024px) 45vw, 90vw"
-              className="object-cover"
-              priority
-            />
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent"
-            />
-
-            <svg
-              className="pointer-events-none absolute inset-0 h-full w-full"
-              viewBox="0 0 400 500"
-              aria-hidden="true"
-            >
-              {CALLOUTS.map((c) => (
-                <g key={c.text}>
-                  <circle
-                    cx={(c.x / 100) * 400}
-                    cy={(c.y / 100) * 500}
-                    r="4"
-                    fill="var(--color-mir-accent)"
-                  >
-                    <animate
-                      attributeName="opacity"
-                      values="1;0.4;1"
-                      dur="2s"
-                      repeatCount="indefinite"
-                    />
-                  </circle>
-                  <line
-                    x1={(c.x / 100) * 400}
-                    y1={(c.y / 100) * 500}
-                    x2={c.align === "left" ? 20 : 380}
-                    y2={(c.y / 100) * 500}
-                    stroke="var(--color-mir-accent)"
-                    strokeWidth="1.5"
-                  />
-                </g>
-              ))}
-            </svg>
-
-            {CALLOUTS.map((c) => (
-              <div
-                key={c.text}
-                className={cn(
-                  "absolute max-w-[160px] rounded-lg bg-[var(--color-mir-bg)]/90 px-3 py-2 font-[var(--font-mir-body)] text-[12px] leading-[1.4] text-[var(--color-mir-ink)] shadow-lg backdrop-blur-sm",
-                  c.align === "left" ? "left-2 text-left" : "right-2 text-right"
-                )}
-                style={{ top: `calc(${c.y}% - 1.1em)` }}
-              >
-                {c.text}
-              </div>
-            ))}
-          </div>
+        <Reveal delay={100} className="relative flex items-center">
+          <PhotoCarousel images={HERO_PHOTOS} className="w-full" />
         </Reveal>
       </div>
 
-      <div className="relative mt-14 w-full overflow-hidden border-t border-white/10 py-4 lg:mt-20">
+      <div className="relative mt-14 w-full overflow-hidden border-t border-white/10 py-5 lg:mt-20 lg:py-6">
         <div
-          className="flex w-max animate-mir-marquee whitespace-nowrap font-[var(--font-mir-body)] text-[13px] text-[var(--color-mir-ink-muted)]"
+          className="flex w-max animate-mir-marquee whitespace-nowrap font-[var(--font-mir-body)] text-[16px] font-medium text-[var(--color-mir-ink-muted)] sm:text-[19px] lg:text-[22px]"
           style={{
             maskImage:
               "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
           }}
         >
-          {Array.from({ length: 4 }).map((_, rep) => (
+          {Array.from({ length: 16 }).map((_, rep) => (
             <span key={rep} className="pr-0">
               {TICKER_ITEMS.map((item, i) => (
                 <span key={i} className="inline-flex items-center">
                   {item}
-                  <span className="mx-4 h-1 w-1 rounded-full bg-[var(--color-mir-accent)]" />
+                  <span className="mx-3 h-1 w-1 shrink-0 rounded-full bg-[var(--color-mir-accent)] sm:mx-4 lg:mx-6" />
                 </span>
               ))}
             </span>
@@ -243,7 +156,7 @@ export function HeroSection({ className }: { className?: string }) {
           }
         }
         .animate-mir-marquee {
-          animation: mir-marquee 28s linear infinite;
+          animation: mir-marquee 150s linear infinite;
         }
       `}</style>
     </section>

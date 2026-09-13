@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/accordion";
 import { Reveal } from "@/components/shared/Reveal";
 import { Magnetic } from "@/components/shared/Magnetic";
+import { smoothScrollToId } from "@/lib/smooth-scroll";
 
 interface FAQItem {
   question: string;
@@ -127,6 +128,7 @@ export function FAQSection() {
           <Magnetic strength={0.2}>
             <Button
               type="button"
+              onClick={() => smoothScrollToId("request")}
               className="h-auto shrink-0 rounded-full bg-[var(--color-mir-accent)] px-6 py-3 text-[14px] font-medium text-white shadow-[0_10px_28px_-8px_rgba(255,87,34,0.65)] transition-all duration-300 hover:bg-[var(--color-mir-accent)] hover:shadow-[0_14px_36px_-6px_rgba(255,87,34,0.8)] sm:text-[15px]"
             >
               Перейти к заявке

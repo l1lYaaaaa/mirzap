@@ -50,7 +50,7 @@ const STEPS: Step[] = [
 
 export function ProcessSection() {
   return (
-    <section className="bg-[var(--color-mir-paper)] px-6 py-16 lg:px-12 lg:py-24">
+    <section id="pick" className="bg-[var(--color-mir-paper)] px-6 pt-10 pb-8 lg:px-12 lg:pt-14">
       <div className="mx-auto max-w-[1320px]">
         <Reveal className="max-w-[52ch]">
           <h2
@@ -145,7 +145,8 @@ export function ProcessSection() {
               </div>
               <Magnetic strength={0.2}>
                 <Button
-                  type="button"
+                  render={<a href="https://t.me/WorldZap" target="_blank" rel="noopener noreferrer" />}
+                  nativeButton={false}
                   className="h-auto shrink-0 rounded-full bg-[var(--color-mir-accent)] px-5 py-2.5 text-[13px] font-medium text-white shadow-[0_8px_24px_-6px_rgba(255,87,34,0.6)] transition-all duration-300 hover:bg-[var(--color-mir-accent)] hover:shadow-[0_12px_32px_-4px_rgba(255,87,34,0.75)]"
                   style={{ fontFamily: "var(--font-mir-body)" }}
                 >
@@ -162,7 +163,7 @@ export function ProcessSection() {
           {STEPS.map((step, index) => {
             const isLast = index === STEPS.length - 1
             return (
-              <div key={step.number} className="group flex items-start gap-3">
+              <div key={step.number} className="group flex items-center gap-3">
                 <span
                   className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--color-mir-accent)] text-[13px] font-semibold text-white shadow-[0_6px_16px_-4px_rgba(255,87,34,0.6)] transition-transform duration-300 group-hover:scale-110"
                   style={{ fontFamily: "var(--font-mir-body)" }}

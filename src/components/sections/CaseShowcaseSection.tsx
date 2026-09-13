@@ -74,7 +74,7 @@ export function CaseShowcaseSection() {
   const [activeIndex, setActiveIndex] = useState(0)
 
   return (
-    <section className="border-t border-[var(--color-mir-paper-muted)] bg-[var(--color-mir-paper)] px-6 py-16 lg:px-12 lg:py-24">
+    <section id="cases" className="border-t border-[var(--color-mir-paper-muted)] bg-[var(--color-mir-paper)] px-6 pt-10 pb-16 lg:px-12 lg:pt-14 lg:pb-24">
       <div className="mx-auto max-w-[1320px]">
         <Reveal className="max-w-[56ch]">
           <h2
@@ -145,7 +145,8 @@ export function CaseShowcaseSection() {
                       <div>
                         <Magnetic strength={0.2}>
                           <Button
-                            type="button"
+                            render={<a href="https://t.me/WorldZap" target="_blank" rel="noopener noreferrer" />}
+                            nativeButton={false}
                             className="h-auto rounded-full bg-[var(--color-mir-accent)] px-6 py-3 text-[14px] font-medium text-white shadow-[0_8px_24px_-6px_rgba(255,87,34,0.6)] transition-all duration-300 hover:bg-[var(--color-mir-accent)] hover:shadow-[0_12px_32px_-4px_rgba(255,87,34,0.75)]"
                           >
                             {active.ctaLabel}
